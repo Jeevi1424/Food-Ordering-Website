@@ -1,0 +1,123 @@
+/* ===== CHECKOUT PAGE ===== */
+
+.checkout-wrapper { padding: 40px 20px 80px; }
+.checkout-header { display: flex; align-items: center; gap: 20px; margin-bottom: 32px; }
+.checkout-header h1 { font-size: 1.8rem; font-weight: 800; }
+.back-link { color: var(--text-light); font-size: 0.9rem; display: flex; align-items: center; gap: 6px; transition: var(--transition); }
+.back-link:hover { color: var(--primary); }
+
+.checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start; }
+
+/* FORM CARDS */
+.form-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.form-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; color: var(--secondary); }
+.form-card h2 i { color: var(--primary); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid .full-span { grid-column: 1 / -1; }
+
+/* PAYMENT */
+.payment-methods { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.payment-option {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 18px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.payment-option input[type="radio"] { accent-color: var(--primary); }
+.payment-option.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+.payment-option i { font-size: 1.2rem; color: var(--primary); }
+.stripe-badge {
+  margin-left: auto;
+  background: #635bff;
+  color: white;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.stripe-notice {
+  background: #f0f0ff;
+  border: 1px solid #635bff;
+  color: #635bff;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 8px;
+}
+.cash-notice {
+  background: #fff8e1;
+  border: 1px solid var(--warning);
+  color: #856404;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.card-input-wrap { position: relative; }
+.card-input-wrap input { padding-right: 80px; }
+.card-icons {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  display: flex; gap: 6px; font-size: 1.4rem;
+}
+.fa-cc-visa { color: #1a1f71; }
+.fa-cc-mastercard { color: #eb001b; }
+
+.place-order-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.05rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ORDER SUMMARY */
+.summary-card, .promo-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+.summary-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 18px; }
+.summary-restaurant { font-size: 0.88rem; color: var(--text-light); margin-bottom: 14px; font-weight: 600; }
+.summary-items { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+.summary-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; }
+.summary-item-name { color: var(--text); }
+.summary-item-qty { color: var(--text-light); font-size: 0.82rem; }
+.summary-item-price { font-weight: 700; color: var(--secondary); }
+
+.promo-card label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 8px; }
+.promo-input { display: flex; gap: 8px; }
+.promo-input input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 0.88rem; outline: none; }
+.promo-input input:focus { border-color: var(--primary); }
+.promo-input button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+.promo-msg { margin-top: 8px; font-size: 0.84rem; }
+.promo-msg.success { color: var(--success); }
+.promo-msg.error { color: var(--danger); }
+
+@media (max-width: 900px) {
+  .checkout-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full-span { grid-column: 1; }
+}

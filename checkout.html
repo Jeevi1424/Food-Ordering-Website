@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - FoodRush</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fas fa-utensils"></i> FoodRush</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="login.html" id="authLink">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="checkout-wrapper">
+    <div class="container">
+      <div class="checkout-header">
+        <a href="javascript:history.back()" class="back-link"><i class="fas fa-arrow-left"></i> Back</a>
+        <h1>Checkout</h1>
+      </div>
+
+      <div class="checkout-layout">
+
+        <!-- LEFT: FORM -->
+        <div class="checkout-form-section">
+
+          <!-- DELIVERY DETAILS -->
+          <div class="form-card">
+            <h2><i class="fas fa-map-marker-alt"></i> Delivery Details</h2>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="John Doe" />
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="phone" placeholder="+1 234 567 8900" />
+              </div>
+              <div class="form-group full-span">
+                <label>Delivery Address *</label>
+                <input type="text" id="address" placeholder="123 Main Street, Apt 4B" />
+              </div>
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" id="city" placeholder="New York" />
+              </div>
+              <div class="form-group">
+                <label>ZIP Code *</label>
+                <input type="text" id="zip" placeholder="10001" />
+              </div>
+              <div class="form-group full-span">
+                <label>Delivery Instructions (optional)</label>
+                <textarea id="instructions" placeholder="Leave at door, call on arrival..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAYMENT -->
+          <div class="form-card">
+            <h2><i class="fas fa-credit-card"></i> Payment</h2>
+            <div class="payment-methods">
+              <label class="payment-option active" id="payCard">
+                <input type="radio" name="payment" value="card" checked onchange="selectPayment('card')" />
+                <i class="fas fa-credit-card"></i> Credit / Debit Card
+                <span class="stripe-badge">Powered by Stripe</span>
+              </label>
+              <label class="payment-option" id="payCash">
+                <input type="radio" name="payment" value="cash" onchange="selectPayment('cash')" />
+                <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+              </label>
+            </div>
+
+            <!-- STRIPE CARD FORM -->
+            <div id="stripeSection">
+              <div class="stripe-notice">
+                <i class="fas fa-lock"></i> Secure payment powered by Stripe
+              </div>
+              <div class="form-grid">
+                <div class="form-group full-span">
+                  <label>Card Number</label>
+                  <div class="card-input-wrap">
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)" />
+                    <div class="card-icons">
+                      <i class="fab fa-cc-visa"></i>
+                      <i class="fab fa-cc-mastercard"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Expiry Date</label>
+                  <input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" />
+                </div>
+                <div class="form-group">
+                  <label>CVV</label>
+                  <input type="text" id="cardCVV" placeholder="123" maxlength="4" />
+                </div>
+                <div class="form-group full-span">
+                  <label>Name on Card</label>
+                  <input type="text" id="cardName" placeholder="John Doe" />
+                </div>
+              </div>
+            </div>
+
+            <!-- CASH SECTION -->
+            <div id="cashSection" style="display:none;">
+              <div class="cash-notice">
+                <i class="fas fa-info-circle"></i>
+                Please have the exact amount ready. Our delivery partner will collect payment at your door.
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-primary place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
+            <i class="fas fa-check-circle"></i> Place Order
+          </button>
+        </div>
+
+        <!-- RIGHT: ORDER SUMMARY -->
+        <div class="order-summary-section">
+          <div class="summary-card">
+            <h2>Order Summary</h2>
+            <div class="summary-restaurant" id="summaryRestaurant"></div>
+            <div class="summary-items" id="summaryItems"></div>
+            <div class="summary-divider"></div>
+            <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+            <div class="summary-row"><span>Delivery Fee</span><span>$2.99</span></div>
+            <div class="summary-row"><span>Tax (8%)</span><span id="summaryTax">$0.00</span></div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
+          </div>
+          <div class="promo-card">
+            <label>Promo Code</label>
+            <div class="promo-input">
+              <input type="text" id="promoCode" placeholder="Enter promo code" />
+              <button onclick="applyPromo()">Apply</button>
+            </div>
+            <div class="promo-msg" id="promoMsg"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2026 FoodRush. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

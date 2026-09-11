@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurants - FoodRush</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/restaurants.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fas fa-utensils"></i> FoodRush</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="restaurants.html" class="active">Restaurants</a>
+        <a href="login.html" id="authLink">Login</a>
+        <a href="#" id="cartBtn" class="cart-btn" onclick="toggleCart(event)">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <h1>All Restaurants</h1>
+      <p>Find your next favourite meal</p>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <section class="filters-section">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="search-filter">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search restaurants..." oninput="applyFilters()" />
+        </div>
+        <div class="location-filter">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" id="locationFilter" placeholder="Filter by location..." oninput="applyFilters()" />
+        </div>
+        <div class="filter-group">
+          <label>Cuisine</label>
+          <select id="cuisineFilter" onchange="applyFilters()">
+            <option value="all">All Cuisines</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Burger">Burger</option>
+            <option value="Sushi">Sushi</option>
+            <option value="Indian">Indian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Healthy">Healthy</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Rating</label>
+          <select id="ratingFilter" onchange="applyFilters()">
+            <option value="0">Any Rating</option>
+            <option value="4.5">4.5+</option>
+            <option value="4">4.0+</option>
+            <option value="3.5">3.5+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Sort By</label>
+          <select id="sortFilter" onchange="applyFilters()">
+            <option value="default">Default</option>
+            <option value="rating">Highest Rated</option>
+            <option value="delivery">Fastest Delivery</option>
+            <option value="price">Lowest Price</option>
+          </select>
+        </div>
+      </div>
+      <div class="active-filters" id="activeFilters"></div>
+    </div>
+  </section>
+
+  <!-- RESTAURANT GRID -->
+  <section class="restaurants-section">
+    <div class="container">
+      <div class="results-count" id="resultsCount"></div>
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <i class="fas fa-search"></i>
+        <h3>No restaurants found</h3>
+        <p>Try adjusting your filters or search term.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(event)"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart(event)"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-restaurant" id="cartRestaurantName"></div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Your cart is empty</p></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="cart-total"><span>Delivery Fee</span><span>$2.99</span></div>
+      <div class="cart-total grand"><span>Total</span><span id="cartGrandTotal">$2.99</span></div>
+      <a href="checkout.html" class="btn-primary full-width">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2026 FoodRush. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/restaurants.js"></script>
+</body>
+</html>

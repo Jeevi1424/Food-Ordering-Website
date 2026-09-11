@@ -1,0 +1,24 @@
+/* ===== ADMIN SPECIFIC ===== */
+.admin-sidebar { background: #1e1b4b; }
+.admin-sidebar .sidebar-logo { color: #818cf8; }
+.admin-sidebar .nav-item.active { background: rgba(129,140,248,0.15); border-left-color: #818cf8; }
+.admin-sidebar .nav-item:hover { background: rgba(255,255,255,0.05); }
+
+.admin-rest-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+.admin-rest-emoji { font-size: 2.2rem; }
+.admin-rest-info { flex: 1; }
+.admin-rest-info h4 { font-weight: 700; margin-bottom: 4px; }
+.admin-rest-info p { font-size: 0.82rem; color: var(--text-light); }
+.admin-rest-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.admin-review-card { background: white; border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px; }
+.admin-review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }

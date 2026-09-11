@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodRush - Order Food Online</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fas fa-utensils"></i> FoodRush</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="login.html" id="authLink">Login</a>
+        <a href="#" id="cartBtn" class="cart-btn" onclick="toggleCart(event)">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hungry? <span>We've got you.</span></h1>
+      <p>Order from hundreds of restaurants near you, delivered fast to your door.</p>
+      <div class="hero-search">
+        <div class="location-input">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" id="locationInput" placeholder="Enter your location..." />
+        </div>
+        <div class="search-input">
+          <i class="fas fa-search"></i>
+          <input type="text" id="heroSearch" placeholder="Search restaurants or cuisines..." />
+        </div>
+        <button onclick="handleHeroSearch()">Search</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-blob">
+        <div class="food-icons">
+          <span>🍕</span><span>🍔</span><span>🍣</span>
+          <span>🍛</span><span>🌮</span><span>🍰</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <div class="container">
+      <h2>Browse by Cuisine</h2>
+      <div class="category-grid" id="categoryGrid">
+        <div class="category-card" onclick="goToRestaurants('Pizza')"><span>🍕</span><p>Pizza</p></div>
+        <div class="category-card" onclick="goToRestaurants('Burger')"><span>🍔</span><p>Burgers</p></div>
+        <div class="category-card" onclick="goToRestaurants('Sushi')"><span>🍣</span><p>Sushi</p></div>
+        <div class="category-card" onclick="goToRestaurants('Indian')"><span>🍛</span><p>Indian</p></div>
+        <div class="category-card" onclick="goToRestaurants('Chinese')"><span>🥡</span><p>Chinese</p></div>
+        <div class="category-card" onclick="goToRestaurants('Dessert')"><span>🍰</span><p>Desserts</p></div>
+        <div class="category-card" onclick="goToRestaurants('Mexican')"><span>🌮</span><p>Mexican</p></div>
+        <div class="category-card" onclick="goToRestaurants('Healthy')"><span>🥗</span><p>Healthy</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED RESTAURANTS -->
+  <section class="featured">
+    <div class="container">
+      <h2>Featured Restaurants</h2>
+      <div class="restaurant-grid" id="featuredGrid"></div>
+      <div class="view-all">
+        <a href="restaurants.html" class="btn-primary">View All Restaurants</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h3>1. Choose Restaurant</h3>
+          <p>Browse restaurants near you and pick your favourite.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-list"></i></div>
+          <h3>2. Select Items</h3>
+          <p>Pick from the menu and add items to your cart.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+          <h3>3. Place Order</h3>
+          <p>Checkout securely with Stripe payment.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-motorcycle"></i></div>
+          <h3>4. Fast Delivery</h3>
+          <p>Your food is on its way — hot and fresh.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(event)"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart(event)"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-restaurant" id="cartRestaurantName"></div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Your cart is empty</p></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="cart-total"><span>Delivery Fee</span><span>$2.99</span></div>
+      <div class="cart-total grand"><span>Total</span><span id="cartGrandTotal">$2.99</span></div>
+      <a href="checkout.html" class="btn-primary full-width">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><i class="fas fa-utensils"></i> FoodRush</h3>
+          <p>Delivering happiness to your doorstep, one meal at a time.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="restaurants.html">Restaurants</a>
+          <a href="login.html">Login / Register</a>
+        </div>
+        <div class="footer-links">
+          <h4>For Business</h4>
+          <a href="owner-dashboard.html">Restaurant Dashboard</a>
+          <a href="admin.html">Admin Panel</a>
+        </div>
+        <div class="footer-links">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 FoodRush. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

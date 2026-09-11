@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu - FoodRush</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><i class="fas fa-utensils"></i> FoodRush</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="login.html" id="authLink">Login</a>
+        <a href="#" id="cartBtn" class="cart-btn" onclick="toggleCart(event)">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- RESTAURANT HERO -->
+  <div class="restaurant-hero" id="restaurantHero">
+    <div class="restaurant-hero-content">
+      <div class="restaurant-info">
+        <h1 id="restaurantName">Loading...</h1>
+        <div class="restaurant-meta">
+          <span id="restaurantCuisine" class="tag"></span>
+          <span class="meta-item"><i class="fas fa-star"></i> <span id="restaurantRating"></span></span>
+          <span class="meta-item"><i class="fas fa-clock"></i> <span id="restaurantDelivery"></span></span>
+          <span class="meta-item"><i class="fas fa-map-marker-alt"></i> <span id="restaurantLocation"></span></span>
+        </div>
+        <p id="restaurantDesc"></p>
+      </div>
+      <div class="restaurant-badge" id="restaurantEmoji"></div>
+    </div>
+  </div>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section">
+    <div class="container menu-layout">
+
+      <!-- CATEGORY SIDEBAR -->
+      <aside class="menu-sidebar">
+        <h3>Categories</h3>
+        <ul class="category-list" id="categoryList"></ul>
+        <!-- REVIEWS SNIPPET -->
+        <div class="sidebar-reviews">
+          <h3>Reviews</h3>
+          <div id="reviewSnippet"></div>
+          <a href="#reviews" class="see-all-reviews">See all reviews</a>
+        </div>
+      </aside>
+
+      <!-- MENU ITEMS -->
+      <div class="menu-content">
+        <div class="menu-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="menuSearch" placeholder="Search menu items..." oninput="filterMenuItems()" />
+        </div>
+        <div id="menuItemsContainer"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <h2>Customer Reviews</h2>
+      <div class="reviews-layout">
+        <div class="reviews-summary">
+          <div class="big-rating" id="bigRating"></div>
+          <div class="rating-bars" id="ratingBars"></div>
+        </div>
+        <div class="reviews-list" id="reviewsList"></div>
+      </div>
+      <!-- ADD REVIEW -->
+      <div class="add-review" id="addReviewSection">
+        <h3>Leave a Review</h3>
+        <div class="star-select" id="starSelect">
+          <i class="fas fa-star" data-val="1"></i>
+          <i class="fas fa-star" data-val="2"></i>
+          <i class="fas fa-star" data-val="3"></i>
+          <i class="fas fa-star" data-val="4"></i>
+          <i class="fas fa-star" data-val="5"></i>
+        </div>
+        <textarea id="reviewText" placeholder="Share your experience..."></textarea>
+        <button class="btn-primary" onclick="submitReview()">Submit Review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(event)"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart(event)"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-restaurant" id="cartRestaurantName"></div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Your cart is empty</p></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="cart-total"><span>Delivery Fee</span><span>$2.99</span></div>
+      <div class="cart-total grand"><span>Total</span><span id="cartGrandTotal">$2.99</span></div>
+      <a href="checkout.html" class="btn-primary full-width">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2026 FoodRush. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

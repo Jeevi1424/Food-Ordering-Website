@@ -1,0 +1,91 @@
+/* ===== ORDER CONFIRMATION ===== */
+
+.confirmation-wrapper { padding: 50px 20px 80px; }
+
+.success-banner {
+  text-align: center;
+  padding: 50px 20px;
+  margin-bottom: 40px;
+}
+.success-circle {
+  width: 90px; height: 90px;
+  background: linear-gradient(135deg, var(--success), #20c997);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  margin: 0 auto 20px;
+  animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(40,167,69,0.3);
+}
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.success-banner h1 { font-size: 2rem; font-weight: 900; color: var(--secondary); margin-bottom: 10px; }
+.success-banner p { color: var(--text-light); font-size: 1rem; margin-bottom: 16px; }
+.order-id { background: var(--primary-light); color: var(--primary); padding: 8px 20px; border-radius: 20px; display: inline-block; font-size: 0.9rem; font-weight: 700; }
+
+/* TRACKING CARD */
+.tracking-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.tracking-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
+.tracking-card h2 i { color: var(--primary); }
+.tracking-steps { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.track-step { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; min-width: 100px; opacity: 0.4; transition: all 0.5s ease; }
+.track-step.active { opacity: 1; }
+.track-step.completed { opacity: 1; }
+.track-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  transition: var(--transition);
+}
+.track-step.active .track-icon { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+.track-step.completed .track-icon { background: var(--success); border-color: var(--success); color: white; }
+.track-info { text-align: center; }
+.track-info h4 { font-size: 0.85rem; font-weight: 700; color: var(--secondary); margin-bottom: 4px; }
+.track-info p { font-size: 0.78rem; color: var(--text-light); }
+.track-connector { flex: 1; height: 2px; background: var(--border); min-width: 30px; }
+.track-connector.active { background: var(--primary); }
+.estimated-time { margin-top: 24px; text-align: center; color: var(--text-light); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.estimated-time i { color: var(--primary); }
+.estimated-time strong { color: var(--secondary); }
+
+/* ORDER DETAILS CARD */
+.order-details-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.order-details-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 24px; }
+.details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px dashed var(--border); }
+.detail-block h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-light); margin-bottom: 6px; }
+.detail-block p { font-size: 0.9rem; font-weight: 600; color: var(--secondary); }
+.ordered-items h4 { font-weight: 700; margin-bottom: 14px; }
+.order-item-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--bg); font-size: 0.9rem; }
+.order-item-row span:first-child { color: var(--text); }
+.order-item-row span:last-child { font-weight: 700; color: var(--secondary); }
+
+.confirmation-actions { display: flex; gap: 16px; justify-content: center; margin-top: 40px; }
+
+@media (max-width: 768px) {
+  .tracking-steps { flex-direction: column; align-items: flex-start; }
+  .track-connector { width: 2px; height: 30px; min-width: auto; }
+  .details-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .details-grid { grid-template-columns: 1fr; }
+  .confirmation-actions { flex-direction: column; }
+}
